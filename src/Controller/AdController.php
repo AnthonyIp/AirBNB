@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Form\AdType;
 use App\Repository\AdRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdController extends AbstractController
@@ -15,10 +17,10 @@ class AdController extends AbstractController
     /**
      * @Route("/ads", name="ads_index")
      * @param AdRepository $repo
+     * @return Response
      */
-    public function index(AdRepository $repo)
+    public function index(AdRepository $repo): Response
     {
-//        $repo = $this->getDoctrine()->getRepository(Ad::class);
         $ads = $repo->findAll();
         return $this->render('ad/index.html.twig', [
             'controller_name' => 'AdController',
@@ -27,14 +29,14 @@ class AdController extends AbstractController
     }
 
     /**
-     * Permet de creer une annonce
+     * Permet de créer une annonce
      *
      * @Route("/ads/new", name="ads_create")
      * @param Request $request
      * @param EntityManagerInterface $manager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function create(Request $request, entityManagerInterface $manager)
+    public function create(Request $request, entityManagerInterface $manager): Response
     {
         $ad = new Ad();
 
@@ -47,14 +49,11 @@ class AdController extends AbstractController
                 $image->setAd($ad);
                 $manager->persist($image);
             }
-
+            $ad->setAuthor($this->getUser());
             $manager->persist($ad);
             $manager->flush();
 
-            $this->addFlash(
-                'success',
-                "L'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée !"
-            );
+            $this->addFlash('success', "L'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée !");
 
             return $this->redirectToRoute('ads_show', [
                 'slug' => $ad->getSlug()
@@ -72,9 +71,9 @@ class AdController extends AbstractController
      * @param Ad $ad
      * @param Request $request
      * @param EntityManagerInterface $manager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function edit(Ad $ad, Request $request, entityManagerInterface $manager)
+    public function edit(Ad $ad, Request $request, entityManagerInterface $manager): Response
     {
         $form = $this->createForm(AdType::class, $ad);
 
@@ -85,14 +84,14 @@ class AdController extends AbstractController
                 $image->setAd($ad);
                 $manager->persist($image);
             }
-
+            $slugify = new Slugify();
+            if ($slugify->slugify($ad->getTitle()) !== $ad->getSlug()) {
+                $ad->setSlug($slugify->slugify($ad->getTitle()));
+            }
             $manager->persist($ad);
             $manager->flush();
 
-            $this->addFlash(
-                'success',
-                "Les modification de l'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée !"
-            );
+            $this->addFlash('success', "Les modification de l'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée !");
 
             return $this->redirectToRoute('ads_show', [
                 'slug' => $ad->getSlug()
@@ -109,12 +108,10 @@ class AdController extends AbstractController
      * Permet d'afficher une seule annonce
      * @Route("/ads/{slug}", name="ads_show")
      * @param Ad $ad
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function show(/*$slug, AdRepository $repo*/ Ad $ad)
+    public function show(Ad $ad): Response
     {
-//        $repo = $this->getDoctrine()->getRepository(Ad::class);
-//        $ad = $repo->findOneBySlug($slug);
         return $this->render('ad/show.html.twig', [
             'ad' => $ad
         ]);

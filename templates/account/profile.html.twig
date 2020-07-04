@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile de l'utilisateur{% endblock %}
+
+{% block body %}
+    <div class="profile">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="bg-light py-3 px-3 rounded">
+                        <h1>Profile de l'utilisateur</h1>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button type="submit" class="btn btn-success">Enregistrer la modification</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

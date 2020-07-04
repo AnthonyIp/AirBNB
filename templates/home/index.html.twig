@@ -6,6 +6,7 @@
 
 {% block body %}
     <div class="container">
+
         <div class="jumbotron mt-3">
             <h1 class="display-3">Bienvenue sur AirBNB</h1>
             <p class="lead">Nous mettons en relations les voyageurs et les proprio qui veulent profiter d'opportunites
@@ -13,11 +14,13 @@
             <hr class="my-4">
             <p>Vous etes voyageur ? et vous voulez voir ou vous pourrez loger pour votre prochain deplacement?</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Voir nos annonces</a>
+                <a class="btn btn-primary btn-lg" href="{{ path("ads_index") }}" role="button">Voir nos annonces</a>
             </p>
         </div>
+
         <h2 class="h1 mt-3 mb-4">Nos appartements stars</h2>
-        <div class="row ">
+
+        <div class="row">
             <div class="col-md-4">
                 <div class="card bg-light mb3">
                     <div class="card-header text-center">
@@ -79,7 +82,7 @@
 
         <h2 class="h1 mt-3 mb-4">Nos proprietaires stars</h2>
         <div class="row">
-            <div class="col mb-0">
+            <div class="col mb-0 d-flex align-items-stretch">
                 <div class="card border-secondary mb-3">
                     <div class="card-body">
                         <h4 class="card-title">Celine Ip</h4>
@@ -94,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col mb-0">
+            <div class="col mb-0 d-flex align-items-stretch">
                 <div class="card border-secondary mb-3">
                     <div class="card-body">
                         <h4 class="card-title">Anthony Ip</h4>

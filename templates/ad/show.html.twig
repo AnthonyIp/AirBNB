@@ -7,7 +7,8 @@
         <div class="container">
             <h1>{{ ad.title }}</h1>
             <p>{{ ad.introduction }}</p>
-            <p class="h2"><strong>{{ ad.rooms }} chambres</strong> pour <strong>{{ ad.price }} euros</strong> par nuit.</p>
+            <p class="h2"><strong>{{ ad.rooms }} chambres</strong> pour <strong>{{ ad.price }} euros</strong> par nuit.
+            </p>
             <a href="" class="btn btn-primary">Reserver</a>
         </div>
     </div>
@@ -15,9 +16,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 mb-3">
+            <div class="col-md-8 mb-4">
                 {{ ad.content | raw }}
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide mt-5" data-ride="carousel">
                     <ol class="carousel-indicators">
                         {% for image in ad.images %}
                             <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}"
@@ -46,22 +47,20 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col ad-author">
+                {% set a = ad.author %}
                 <div class="row mb-3">
-                    <div class="col-4">
-                        <img src="https://via.placeholder.com/80x80" alt="Avatar de Joseph">
+                    <div class="col-3">
+                        <a href="{{ path('user_show',  {'slug': a.slug}) }}">
+                            <img src="{{ a.picture }}" class="avatar avatar-medium" alt="Avatar de {{ a.fullName }}">
+                        </a>
                     </div>
                     <div class="col">
-                        <h3>Joseph Dupont</h3>
-                        <span class="badge badge-primary">3 annonces</span>
+                        <a href="{{ path('user_show',  {'slug': a.slug}) }}"><h3>{{ a.fullName }}</h3></a>
+                        <span class="badge badge-primary">{{ a.ads | length }} annonces</span>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus animi cupiditate ea eius harum
-                   nemo officia quaerat reiciendis repellat voluptatem!</p>
-                <p>Aperiam aspernatur consequatur cum cupiditate dicta distinctio eius, hic id modi perferendis, qui
-                   repellat saepe soluta temporibus veniam! Ipsa, officiis?</p>
-                <p>Et eum harum id, laboriosam maxime optio perspiciatis quidem sed sit. Corporis ex iure, quam quod
-                   rerum sed? Corporis, in!</p>
+                {{ a.description | raw }}
             </div>
         </div>
     </div>
