@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition de l'annonce {{ ad.title }}{% endblock %}
+
+{% form_theme form 'ad/_collection.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Modifification de l'annonce {{ ad.title }}</h1>
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <input type="hidden" id="widgets-counter" value="0">
+
+        <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/ad.js"></script>
+{% endblock %}
