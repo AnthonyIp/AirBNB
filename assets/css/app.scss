@@ -1,0 +1,77 @@
+@import url("./bootstrap.min.css");
+
+div.container {
+  margin-top: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+div.ad-title {
+  background-image: url("https://lorempixel.com/1000/350/?68489");
+  padding: 2em;
+  background-size: cover;
+  background-position: center center;
+
+  h1, p {
+    color: white;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn {
+    margin-top: 2em;
+    font-size: 1.5em;
+    line-height: 1.5em;
+  }
+}
+
+div.carousel-caption {
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.card-title a {
+  text-decoration: none;
+}
+
+.avatar {
+  max-width: 128px;
+  max-height: 128px;
+  border-radius: 50%;
+
+  &.avatar-medium {
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  &.avatar-mini {
+    max-width: 30px;
+    max-height: 30px;
+  }
+
+  &.avatar-micro {
+    max-width: 20px;
+    max-height: 20px;
+  }
+}
+
+.alert {
+  a {
+    text-decoration: none;
+  }
+
+  .btn {
+    color: white;
+  }
+}
+
+.ad-author a {
+  text-decoration: none;
+  color: black;
+}
+
+
+.ad-buttons a {
+  margin: 0.5rem;
+}
+
