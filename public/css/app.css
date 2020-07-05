@@ -48,3 +48,7 @@ div.carousel-caption {
     text-decoration: none;
     color: black;
 }
+
+.ad-buttons a {
+    margin: 0.5rem;
+}

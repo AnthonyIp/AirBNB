@@ -17,7 +17,12 @@
             <p class="card-text">
                 {{ ad.introduction }}
             </p>
-            <a href="{{ url }}" class="btn btn-success w-50">En savoir plus</a>
+            <div class="ad-buttons d-flex flex-row flex-wrap">
+                <a href="{{ url }}" class="btn btn-success w-30">En savoir plus</a>
+                {% if app.user == ad.getAuthor() %}
+                    <a href="{{ path('ads_edit', {"slug": ad.slug}) }}" class="btn btn-primary w-40">Modifier l'annonce</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
