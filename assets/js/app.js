@@ -15,7 +15,7 @@ import $ from 'jquery';
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
-// global.$ = global.jQuery = $;
+global.$ = global.jQuery = $;
 
 require('jquery');
 require('bootstrap');

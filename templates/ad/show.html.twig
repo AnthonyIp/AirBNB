@@ -3,13 +3,14 @@
 {% block title %}{{ ad.title }}{% endblock %}
 
 {% block body %}
-    <div class="ad-title" style="background-image: url({{ ad.coverImage }})">
+    <div class="ad-title"
+         style="background-image: url({{ ad.coverImage }}); background-repeat: no-repeat;">
         <div class="container">
             <h1>{{ ad.title }}</h1>
             <p>{{ ad.introduction }}</p>
             <p class="h2"><strong>{{ ad.rooms }} chambres</strong> pour <strong>{{ ad.price }} euros</strong> par nuit.
             </p>
-            <a href="" class="btn btn-primary">Réserver</a>
+            <a href="{{ path('booking_create',  {"slug": ad.slug}) }}" class="btn btn-primary">Réserver</a>
 
             {% if app.user == ad.getAuthor() %}
                 <a href="{{ path('ads_edit', {"slug": ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>

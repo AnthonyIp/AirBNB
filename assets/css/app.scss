@@ -75,3 +75,6 @@ div.carousel-caption {
   margin: 0.5rem;
 }
 
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+  background-color: rgba(252,7,11,0.1) !important;
+}

@@ -25,7 +25,9 @@ Encore
      */
     .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/ad', './assets/js/ad.js')
+    .addEntry('js/bootstrap-datepicker', './assets/js/bootstrap-datepicker.min.js')
     .addEntry('css/app', './assets/css/app.scss')
+    .addEntry('css/bootstrap-datepicker', './assets/css/bootstrap-datepicker.min.css')
     // .addEntry('css/bootstrap', './assets/css/bootstrap.min.css')
     // .addEntry('js/popper', './assets/js/popper.min.js')
     // .addEntry('js/bootstrap', './assets/js/bootstrap.min.js')
@@ -67,7 +69,7 @@ Encore
 //.enableIntegrityHashes(Encore.isProduction())
 
 // uncomment if you're having problems with a jQuery plugin
-.autoProvidejQuery()
+// .autoProvidejQuery()
 
 // uncomment if you use API Platform Admin (composer req api-admin)
 //.enableReactPreset()
