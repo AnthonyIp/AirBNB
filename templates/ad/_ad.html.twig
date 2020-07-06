@@ -3,8 +3,14 @@
 <div class="col-md-4 d-flex align-items-stretch">
     <div class="card bg-light mb-3">
         <div class="card-header text-center">
-            {{ ad.rooms }} chambres, <strong>{{ ad.price }}&euro;/nuit</strong><br>
-            <small>Pas encore note</small>
+            <strong>{{ ad.rooms }}</strong> chambres, <strong>{{ ad.price | number_format(2, ',', ' ') }}&euro;</strong> par nuit<br>
+
+            {% if ad.comments|length > 0 %}
+                {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %}
+            {% else %}
+                <small>Pas encore noté</small>
+            {% endif %}
+
         </div>
         <a href="{{ url }}">
             <img src="{{ ad.coverImage }}" alt="{{ ad.title }}"
@@ -17,10 +23,12 @@
             <p class="card-text">
                 {{ ad.introduction }}
             </p>
-            <div class="ad-buttons d-flex flex-row flex-wrap">
-                <a href="{{ url }}" class="btn btn-success w-30">En savoir plus</a>
+            <div class="ad-buttons d-flex flex-row-reverse flex-wrap">
+                <a href="{{ url }}" class="btn btn-success w-30 ">En savoir plus</a>
                 {% if app.user == ad.getAuthor() %}
-                    <a href="{{ path('ads_edit', {"slug": ad.slug}) }}" class="btn btn-primary w-40">Modifier l'annonce</a>
+                    <a href="{{ path('ads_edit', {"slug": ad.slug}) }}" class="btn btn-primary w-40">
+                        Modifier l'annonce
+                     </a>
                 {% endif %}
             </div>
         </div>

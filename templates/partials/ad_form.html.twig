@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col">
+        <div class="alert alert-light">
+            <h2 class="alert-heading">Informations générales</h2>
+            <hr>
+            {{ form_row(form.title) }}
+            {{ form_row(form.slug) }}
+            {{ form_row(form.price) }}
+            {{ form_row(form.rooms) }}
+        </div>
+        <div class="alert alert-light">
+            <h2 class="alert-heading">Détails de l'annonce</h2>
+            <hr>
+            {{ form_row(form.introduction) }}
+            {{ form_row(form.content) }}
+        </div>
+    </div>
+    <div class="col">
+        <div class="alert alert-light">
+            <h2>Images de l'annonce</h2>
+            <hr>
+            {{ form_row(form.coverImage) }}
+            {{ form_row(form.images) }}
+        </div>
+    </div>
+</div>

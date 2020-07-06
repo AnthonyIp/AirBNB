@@ -7,21 +7,28 @@
 {% block body %}
 
     <div class="container">
-        <h1>Créer une nouvelle annonce</h1>
+        <h1 class="my-5">Créer une nouvelle annonce</h1>
+
         {{ form_start(form) }}
 
-        {{ form_widget(form) }}
+        {% include 'partials/ad_form.html.twig' with {'form': form} %}
 
-        <input type="hidden" id="widgets-counter" value="0">
-
-        <button type="submit" class="btn btn-success">Créer la nouvelle annonce</button>
+        <div class="alert alert-success clearfix">
+            <h2 class="alert-heading">Sauvegarder mon annonce</h2>
+            <p>Vous êtes sur le point de créer votre annonce!</p>
+            <button type="submit" class="btn btn-primary float-right">
+                <i class="fas fa-check"></i>
+                Créer la nouvelle annonce
+            </button>
+        </div>
 
         {{ form_end(form) }}
     </div>
 
 {% endblock %}
 
+
 {% block javascripts %}
-    {‌{encore_entry_script_tags("js/ad") }}
+    {{ encore_entry_script_tags('js/ad') }}
 {% endblock %}
 

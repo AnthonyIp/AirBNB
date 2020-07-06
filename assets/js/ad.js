@@ -7,7 +7,9 @@ $('#add-image').click(() => {
     /*injection du template dans la div*/
     image.append(tmpl);
 
+    console.log(index);
     $('#widgets-counter').val(index + 1);
+    console.log($('#widgets-counter').val());
 
     /*Gestion du boutton supprimer*/
     handleDeleteButtons();
@@ -16,7 +18,6 @@ $('#add-image').click(() => {
 function handleDeleteButtons() {
     $('button[data-action="delete"]').click(function () {
         const target = $(this).data('target');
-        console.log(target);
         $(target).remove();
     })
 }

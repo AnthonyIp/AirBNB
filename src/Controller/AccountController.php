@@ -163,6 +163,6 @@ class AccountController extends AbstractController
      * @return Response
      */
     public function bookings() {
-        return $this->render('account/booking.html.twig');
+        return $this->render('account/bookings.html.twig');
     }
 }
