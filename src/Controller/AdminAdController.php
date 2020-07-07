@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Ad;
+use App\Form\AdType;
 use App\Repository\AdRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminAdController extends AbstractController
@@ -11,7 +14,7 @@ class AdminAdController extends AbstractController
     /**
      * @Route("/admin/ads", name="admin_ads_index")
      * @param AdRepository $repo
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(AdRepository $repo)
     {

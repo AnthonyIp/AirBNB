@@ -31,7 +31,6 @@ class AdController extends AbstractController
 
     /**
      * Permet de créer une annonce
-     *
      * @Route("/ads/new", name="ads_create")
      * @Security("is_granted('ROLE_USER')")
      * @param Request $request

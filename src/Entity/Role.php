@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=RoleRepository::class)
  */
-class  Role
+class Role
 {
     /**
      * @ORM\Id()

@@ -12,7 +12,7 @@
 
         <h1 class="my-5">Réservez pour l'annonce: <em>{{ ad.title }}</em></h1>
         <p>
-            Vous etes sur le point de réserver le bien de <strong>{{ ad.author.fullName }}</strong>
+            Vous êtes sur le point de faire une réservation sur le bien de <strong>{{ad.author.fullName}}</strong>
             , dites nous tout, on s'occupe du reste
         </p>
         {{ form_start(form) }}
@@ -32,7 +32,7 @@
         </div>
 
         <h2>Vous avez terminé!</h2>
-        <p>Vacance de reve? hebergement pour le boulot? Peu importe, on est avec vous!</p>
+        <p>Vacance de rêve ? Hébergement pour le boulot? Peu importe, on est avec vous!</p>
 
         <button type="submit" class="btn btn-success">Je réserve!</button>
 
@@ -49,12 +49,15 @@
         $(document).ready(function () {
             $("#booking_startDate, #booking_endDate").datepicker({
                 format: 'dd/mm/yyyy',
+                language: 'FR-fr',
+                todayHighlight: true,
+                weekStart: 1,
+                startDate: new Date(),
                 datesDisabled: [
                     {% for day in ad.notAvailableDays %}
                     "{{ day.format('d/m/Y') }}",
                     {% endfor %}
-                ],
-                startDate: new Date()
+                ]
             });
 
             $('#booking_startDate, #booking_endDate').on('change', calculateAmount);

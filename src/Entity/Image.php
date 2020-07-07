@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ImageRepository;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
@@ -27,12 +26,12 @@ class Image
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, minMessage="Le titre de l'image doit faire plus de 10 caracteres!")
+     * @Assert\Length(min=5,max=30, minMessage="5 caractères minimum",maxMessage="30 caractères maximum")
      */
     private $caption;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ad::class, inversedBy="images")
+     * @ORM\ManyToOne(targetEntity=Ad::class, inversedBy="images")
      * @ORM\JoinColumn(nullable=false)
      */
     private $ad;

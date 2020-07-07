@@ -29,7 +29,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, max=255, minMessage="Le titre doit faire plus de 10 caracteres!", maxMessage="Le titre ne peut pas faire plus de 255 caracteres!")
+     * @Assert\Length(min=10,max=50, minMessage="Le titre doit contenir minimum 10 caractères",maxMessage="Le titre doit contenir maximum 50 caractères")
      */
     private $title;
 
@@ -40,6 +40,7 @@ class Ad
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type(type="float",message="La valeur{{ value }} n'est pas valide {{ type }}.")
      */
     private $price;
 
@@ -57,11 +58,15 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url(
+     *    message = "L'adresse url '{{ value }}' n'est pas valide",
+     * )
      */
     private $coverImage;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="integer",message="Veuillez saisir un nombre.")
      */
     private $rooms;
 
@@ -124,7 +129,6 @@ class Ad
 
     /**
      * Permet d'obtenir la moyenne globale des notes pour cette annonce
-     *
      * @return float
      */
     public function getAvgRatings()
@@ -160,7 +164,6 @@ class Ad
             $days = array_map(function ($daysTimestamp) {
                 return new \DateTime(date('Y-m-d', $daysTimestamp));
             }, $resultat);
-
             $notAvailableDays = array_merge($notAvailableDays, $days);
         }
         return $notAvailableDays;

@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Cocur\Slugify\Slugify;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -54,23 +54,29 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\NotCompromisedPassword
+     * @Assert\Regex(pattern="/^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/",match=true,message="Sécurité du mot de passe incorrect. Minimum 8 caractères, 1 chiffre, 1 majuscule, 1 caractère spécial")
      */
     private $hash;
 
     /**
+     * Confirmation du mot de passe
      * @Assert\EqualTo(propertyPath="hash",message="Vous n'avez pas correctement confirmé votre mot de passe")
      */
     private $passwordConfirm;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=20, minMessage="Votre introduction doit faire plus de 20 caracteres!")
+     * @Assert\NotBlank
+     * @Assert\Length(min=10, minMessage="Votre introduction doit faire plus de 10 caracteres!")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=100, minMessage="Votre description detaillée doit faire plus de 100 caracteres!")
+     * @Assert\NotBlank
+     * @Assert\Length(min=50, minMessage="Votre description detaillée doit faire plus de 50 caracteres!")
      */
     private $description;
 

@@ -23,7 +23,7 @@
         "sass-loader": "^9.0.1"
     },
     "engines": {
-        "node": "10.16.3",
+        "node": "12.x",
         "yarn" : "1.x"
     }
 }

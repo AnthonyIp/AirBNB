@@ -1,7 +1,70 @@
-{% extends 'admin/base.html.twig' %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Connexion à l'administration</title>
+    {{ encore_entry_link_tags('css/app') }}
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<div class="col-lg-5 col-md-6 col-sm-7 col-xs-4">
+    <div class="card bg-light">
+        <div class="card-header">
+            <h4 class="card-title text-center">
+                <i class="fas fa-lock"></i>
+                Connexion à l'administration
+            </h4>
+        </div>
+        <div class="card-body">
+            {% if hasError %}
+                <div class="alert alert-danger">
+                    <p>Les informations que vous avez fournies ne sont pas bonnes.</p>
+                </div>
+            {% endif %}
+            <form method="POST">
+                <div class="form-group">
+                    <label for="_username">Email</label>
+                    <input type="text" class="form-control" placeholder="Adresse email ..." name="_username"
+                           value="{{ username }}">
+                </div>
+                <div class="form-group">
+                    <label for="_password">Mot de passe</label>
+                    <input type="password" class="form-control" placeholder="Mot de passe ..." name="_password">
+                </div>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col text-center">
+                            <a href="{{ path('homepage') }}" class="btn btn-link">
+                                <i class="fas fa-arrow-circle-left"></i>
+                                Retour au site
+                            </a>
+                        </div>
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-lock-open"></i>
+                                Connexion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-{% block title %}Hello AdminAccountController!{% endblock %}
-
-{% block body %}
-hello world
-{% endblock %}
+{{ encore_entry_script_tags('js/app') }}
+</body>
+</html>

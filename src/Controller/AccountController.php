@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\PasswordUpdate;
 use App\Entity\User;
 use App\Form\AccountType;
-use App\Form\PasswordUpdateType;
+use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
+use App\Form\PasswordUpdateType;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -35,8 +35,8 @@ class AccountController extends AbstractController
         $username = $utils->getLastUsername();
 
         return $this->render('account/login.html.twig', [
-            'username' => $username,
             'hasError' => $error !== null,
+            'username' => $username,
         ]);
     }
 
@@ -44,7 +44,8 @@ class AccountController extends AbstractController
      * Permet de se deconnecter
      * @Route("/logout", name="account_logout")
      * */
-    public function logout(): void {}
+    public function logout(): void
+    {}
 
     /**
      * Permet d'afficher le formulaire d'inscription et de s'incrire au site
@@ -58,15 +59,12 @@ class AccountController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getHash());
             $user->setHash($hash);
-
             $manager->persist($user);
             $manager->flush();
-
             $this->addFlash('success', 'Votre compte a bien été crée! Vous pouvez maintenant vous connecter!');
             return $this->redirectToRoute('account_login');
         }
@@ -88,10 +86,9 @@ class AccountController extends AbstractController
     {
         $user = $this->getUser();
         $form = $this->createForm(AccountType::class, $user);
-
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($user);
             $manager->flush();
             $slugify = new Slugify();
@@ -128,12 +125,9 @@ class AccountController extends AbstractController
                 $newPassword = $passwordUpdate->getNewPassword();
                 $hash = $encoder->encodePassword($user, $newPassword);
                 $user->setHash($hash);
-
                 $manager->persist($user);
                 $manager->flush();
-
-                $this->addFlash('success', 'Votre nouveau mot de passe a été enregistré avec succès!');
-
+                $this->addFlash('success', 'Votre nouveau mot de passe a été mis à jour!');
                 return $this->redirectToRoute('homepage');
             }
         }
@@ -156,13 +150,14 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permet d'afficher la liste des reservations faites par l'utilisateur
+     * Permet d'afficher la liste des réservations faites par l'utilisateur
      *
      * @Route("/account/bookings", name="account_bookings")
      *
      * @return Response
      */
-    public function bookings() {
+    public function bookings()
+    {
         return $this->render('account/bookings.html.twig');
     }
 }

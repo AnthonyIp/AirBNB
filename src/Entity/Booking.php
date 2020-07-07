@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BookingRepository;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
@@ -67,7 +66,7 @@ class Booking
     public function prePersist(): void
     {
         if (empty($this->createdAt)) {
-            $this->createdAt = new \DateTime();
+            $this->createdAt = new \DateTime('now', new \DateTimeZone("Europe/Paris"));
         }
         if (empty($this->amount)) {
             /* prix de l'annonce * nombre de jour du sejour*/
@@ -75,10 +74,7 @@ class Booking
         }
     }
 
-    /**
-     *
-     */
-    public function isBookableDates()
+    public function isBookableDates(): bool
     {
         /*Connaitre les dates qui sont impossibles pour l'annonce*/
         $notAvailableDays = $this->ad->getNotAvailableDays();
