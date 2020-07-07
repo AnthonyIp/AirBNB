@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
         $adminUser->setFirstName('Anthony')
             ->setLastName('Admin')
             ->setEmail('admin@admin.com')
-            ->setHash($this->encoder->encodePassword($adminUser, 'password'))
+            ->setHash($this->encoder->encodePassword($adminUser, '123456789'))
             ->setPicture('https://i.pravatar.cc/300')
             ->setIntroduction($faker->sentence())
             ->setDescription('<p>' . implode('</p><p>', $faker->paragraphs(3)) . '</p>')
