@@ -34,6 +34,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\GreaterThan("today", message="La date d'arrivée doit être ultérieure à la date d'aujourd'hui !", groups={"front"})
+     * groups={"Front"})
      */
     private $startDate;
 
@@ -62,6 +63,7 @@ class Booking
      * Creation de la date de creation et met a jour la propriete du prix finale du sejour
      * Callback appele a chaque fois qu'on cree une reservation
      * @ORM\PrePersist
+     * @return void
      */
     public function prePersist(): void
     {

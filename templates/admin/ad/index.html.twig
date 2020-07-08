@@ -18,12 +18,13 @@
             </tr>
             </thead>
             <tbody>
-            {% for ad in ads %}
+            {% for ad in pagination.data %}
                 <tr>
                     <td>{{ ad.id }}</td>
                     <td>{{ ad.title }}</td>
                     <td>
-                        <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}" class="avatar avatar-micro mr-2">
+                        <img src="{{ ad.author.picture }}" alt="Avatar de {{ ad.author.fullName }}"
+                             class="avatar avatar-micro mr-2">
                         {{ ad.author.fullName }}
                     </td>
                     <td class="text-center">
@@ -38,5 +39,6 @@
             {% endfor %}
             </tbody>
         </table>
+        {{ pagination.display() }}
     </div>
 {% endblock %}

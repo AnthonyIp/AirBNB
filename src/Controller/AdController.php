@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Form\AdType;
 use App\Repository\AdRepository;
+use App\Service\PaginationService;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -16,16 +17,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdController extends AbstractController
 {
     /**
-     * @Route("/ads", name="ads_index")
-     * @param AdRepository $repo
+     * @Route("/ads/{page<\d+>?1}", name="ads_index")
+     * @param $page
+     * @param PaginationService $pagination
      * @return Response
      */
-    public function index(AdRepository $repo): Response
+    public function index($page, PaginationService $pagination): Response
     {
-        $ads = $repo->findAll();
+        $pagination
+            ->setEntityClass(Ad::class)
+            ->setPage($page)
+            ->setLimit(9);
+
         return $this->render('ad/index.html.twig', [
-            'controller_name' => 'AdController',
-            'ads' => $ads
+            'pagination' => $pagination,
         ]);
     }
 

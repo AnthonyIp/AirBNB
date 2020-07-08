@@ -7,9 +7,10 @@
         <h1 class="my-5">Voici les annonces de nos hôtes</h1>
 
         <div class="row">
-            {% for ad in ads %}
+            {% for ad in pagination.data %}
                 {% include 'ad/_ad.html.twig' %}
             {% endfor %}
         </div>
+        {{ pagination.display() }}
     </div>
 {% endblock %}

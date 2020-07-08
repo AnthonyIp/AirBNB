@@ -103,6 +103,8 @@ class Ad
      * Permet d'initialiser le slug
      * @ORM\PrePersist
      * @ORM\PreUpdate
+     *
+     * @return void
      */
     public function initalizeSlug(): void
     {
@@ -148,6 +150,7 @@ class Ad
      * Permet d'obtenir un tableau des jours qui ne sont pas disponibles pour cet annonce
      * @return array Un tableau d'objet DateTime representant les jours d'occupations
      *
+     * @return array un tableau d'objet DateTime
      */
     public function getNotAvailableDays(): array
     {
