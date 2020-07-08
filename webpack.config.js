@@ -23,11 +23,11 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('js/app', './assets/js/app.js')
-    .addEntry('js/ad', './assets/js/ad.js')
-    .addEntry('js/bootstrap-datepicker', './assets/js/bootstrap-datepicker.min.js')
-    .addEntry('css/app', './assets/css/app.scss')
-    .addEntry('css/bootstrap-datepicker', './assets/css/bootstrap-datepicker.min.css')
+    .addEntry('app', './assets/js/app.js')
+    .addEntry('ad', './assets/js/ad.js')
+    .addEntry('bootstrap-datepicker', './assets/js/bootstrap-datepicker.min.js')
+    .addEntry('app', './assets/css/app.scss')
+    .addEntry('bootstrap-datepicker', './assets/css/bootstrap-datepicker.min.css')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
