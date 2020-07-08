@@ -28,9 +28,6 @@ Encore
     .addEntry('js/bootstrap-datepicker', './assets/js/bootstrap-datepicker.min.js')
     .addEntry('css/app', './assets/css/app.scss')
     .addEntry('css/bootstrap-datepicker', './assets/css/bootstrap-datepicker.min.css')
-    // .addEntry('css/bootstrap', './assets/css/bootstrap.min.css')
-    // .addEntry('js/popper', './assets/js/popper.min.js')
-    // .addEntry('js/bootstrap', './assets/js/bootstrap.min.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
