@@ -1,0 +1,112 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification du profil n°{{ ad.id }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-5 text-center">Modification de l'annonce n°{{ ad.id }}</h1>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-8">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">Modifier l'annonce ?</h4>
+                    </div>
+                    <div class="card-body">
+                        {% include 'partials/ad_form.html.twig' with {'form': form} %}
+                        <input type="hidden" name="referer" value="{{app.request.headers.get('referer')}}"/>
+                        <a href="{{ path('ads_show', {'slug' : ad.slug}) }}" target="_blank" class="btn btn-primary float-right mx-2">
+                            <i class="fas fa-eye"></i>
+                            Voir l'annonce
+                        </a>
+                        <button type="submit" class="btn btn-success float-right mx-2">
+                            <i class="fas fa-check"></i>
+                            Enregistrer les modifications
+                        </button>
+                        <a href="{{ app.request.headers.get('referer') }}" class="btn btn-danger float-right mx-2">
+                            <i class="fas fa-chevron-left"></i>
+                            Retour à la page précédente
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title  text-center">Les réservations</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Voyageur</th>
+                                <th>Date</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for booking in ad.bookings %}
+                                <tr>
+                                    <td>{{ booking.id }}</td>
+                                    <td>{{ booking.booker.fullName }}</td>
+                                    <td>{{ booking.createdAt | date('d/m/Y H:i') }}</td>
+                                    <td>
+                                        <a href="#" class="badge badge-primary">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card bg-light mt-5">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">Les commentaires</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Voyageur</th>
+                                <th>Note</th>
+                                <th>commentaires</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for comment in ad.comments %}
+                                <tr>
+                                    <td>{{ comment.id }}</td>
+                                    <td>{{ comment.author.fullName }}</td>
+                                    <td class="text-center">{{ comment.rating }}</td>
+                                    <td>{{ comment.content }}</td>
+                                    <td>
+                                        <div class="row">
+                                            <a href="{{ path('admin_comment_edit',{'id':comment.id}) }}" class="badge badge-primary my-2">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+                                            <a href="{{ path('admin_comment_delete',{'id':comment.id}) }}" class="badge badge-danger my-2">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('js/ad') }}
+{% endblock %}

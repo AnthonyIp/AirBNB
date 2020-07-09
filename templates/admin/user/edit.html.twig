@@ -1,0 +1,111 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification du profil {{ user.fullName }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-5 text-center">Modification du profil {{ user.fullName }}</h1>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-3">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">Informations de l'utilisateur</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ form_widget(form) }}
+                        <input type="hidden" name="referer" value="{{ app.request.headers.get('referer') }}"/>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ app.request.headers.get('referer') }}"
+                                   class="btn btn-danger">
+                                    <i class="fas fa-chevron-left"></i>
+                                    Retour à la page précédente
+                                </a>
+
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-check"></i>
+                                    Enregistrer les modifications
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title  text-center">Les annonces</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titre</th>
+                                <th>Chambre</th>
+                                <th>Prix/nuit</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for ad in user.ads %}
+                                <tr>
+                                    <td>{{ ad.id }}</td>
+                                    <td>{{ ad.title }}</td>
+                                    <td>{{ ad.rooms }}</td>
+                                    <td>{{ ad.price | number_format(2, ',', ' ') }}</td>
+                                    <td>
+                                        <a href="#" class="badge badge-primary">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title  text-center">Les réservations</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Date de réservation</th>
+                                <th>Date d'arrivée</th>
+                                <th>Date de départ</th>
+                                <th>Annonce</th>
+                                <th>Prix</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for booking in user.bookings %}
+                                <tr>
+                                    <td>{{ booking.createdAt | date('d/m/Y H:i') }}</td>
+                                    <td>{{ booking.startDate | date('d/m/Y H:i') }}</td>
+                                    <td>{{ booking.endDate | date('d/m/Y H:i') }}</td>
+                                    <td>{{ booking.ad.title }}</td>
+                                    <td>{{ booking.amount | number_format(2, ',', ' ') }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('js/ad') }}
+{% endblock %}
