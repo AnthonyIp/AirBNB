@@ -63,6 +63,7 @@ class Booking
      * Creation de la date de creation et met a jour la propriete du prix finale du sejour
      * Callback appele a chaque fois qu'on cree une reservation
      * @ORM\PrePersist
+     * @ORM\PreUpdate
      * @return void
      */
     public function prePersist(): void

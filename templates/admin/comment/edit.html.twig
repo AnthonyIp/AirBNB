@@ -1,0 +1,45 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification du commentaire n°{{ comment.id }} {% endblock %}
+
+{% form_theme form _self %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-5 text-center">Modification du commentaire n°{{ comment.id }}</h1>
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light">
+                    <div class="card-header">
+                        <h4 class="card-title text-center h5">
+                            <strong>Annonce liée: </strong> {{ comment.ad.title }}<br>
+                            <strong>Auteur: </strong> {{ comment.author.fullName }}<br>
+                            <strong>Date de création: </strong> {{ comment.createdAt | date('d/m/Y H:i') }}<br>
+                            <strong>Note donnée: </strong>{% include 'partials/rating.html.twig' with {'rating': comment.rating} %}<br>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        {{ form_widget(form) }}
+                        <input type="hidden" name="referer" value="{{app.request.headers.get('referer')}}"/>
+                        <div class="text-center">
+                            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-danger">
+                                <i class="fas fa-chevron-left"></i>
+                                Retour à la page précédente
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-check"></i>
+                                Enregistrer les modifications
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

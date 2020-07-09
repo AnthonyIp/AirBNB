@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +28,6 @@ class AdminAccountController extends AbstractController
     /**
      * Permet de se déconnecter
      * @Route("/admin/logout", name="admin_account_logout")
-     * @return void
      */
     public function logout() {}
 }

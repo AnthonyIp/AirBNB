@@ -11,10 +11,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookingType extends ApplicationType
 {
-
     private $transformer;
 
-    public function __construct(FrenchToDateTimeTransformer $transformer){
+    public function __construct(FrenchToDateTimeTransformer $transformer)
+    {
         $this->transformer = $transformer;
     }
 
@@ -45,7 +45,7 @@ class BookingType extends ApplicationType
             'data_class' => Booking::class,
             'validation_groups' => [
                 "Default",
-                "Front",
+                "front",
             ]
         ]);
     }
