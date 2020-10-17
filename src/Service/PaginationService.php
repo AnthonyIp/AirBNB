@@ -3,7 +3,7 @@
 namespace App\Service;
 
 use Twig\Environment;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**

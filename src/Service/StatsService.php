@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class StatsService
 {
