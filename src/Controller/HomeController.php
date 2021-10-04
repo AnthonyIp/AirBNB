@@ -10,19 +10,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage")
-     * @param AdRepository $adRepo
-     * @param UserRepository $userRepo
-     * @return Response
-     */
-    public function index(AdRepository $adRepo, UserRepository $userRepo)
-    {
-        return $this->render('home/index.html.twig',
-            [
-                'ads' => $adRepo->findBestAds(3),
-                'users' => $userRepo->findBestUsers(3)
-            ]
-        );
-    }
+	/**
+	 * @Route("/", name="homepage")
+	 * @param AdRepository   $adRepo
+	 * @param UserRepository $userRepo
+	 * @return Response
+	 */
+	public function index(AdRepository $adRepo, UserRepository $userRepo)
+	{
+		return $this->render('home/index.html.twig',
+							 [
+								 'ads'   => $adRepo->findBestAds(3),
+								 'users' => $userRepo->findBestUsers(3),
+							 ]
+		);
+	}
 }

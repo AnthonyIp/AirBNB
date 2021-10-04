@@ -11,25 +11,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('url', UrlType::class, [
-                'attr' => [
-                    'placeholder' => "URL de l'image",
-                ]
-            ])
-            ->add('caption', TextType::class, [
-                'attr' => [
-                    'placeholder' => "Titre de l'image",
-                ]
-            ]);
-    }
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+			->add('url', UrlType::class, [
+				'attr' => [
+					'placeholder' => "URL de l'image",
+				],
+			])
+			->add('caption', TextType::class, [
+				'attr' => [
+					'placeholder' => "Titre de l'image",
+				],
+			]);
+	}
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Image::class,
-        ]);
-    }
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults([
+								   'data_class' => Image::class,
+							   ]);
+	}
 }

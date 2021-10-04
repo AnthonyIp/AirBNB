@@ -12,68 +12,68 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Role
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+	/**
+	 * @ORM\Id()
+	 * @ORM\GeneratedValue()
+	 * @ORM\Column(type="integer")
+	 */
+	private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $title;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="userRoles")
-     */
-    private $users;
+	/**
+	 * @ORM\ManyToMany(targetEntity=User::class, inversedBy="userRoles")
+	 */
+	private $users;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+	public function __construct()
+	{
+		$this->users = new ArrayCollection();
+	}
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	public function getId(): ?int
+	{
+		return $this->id;
+	}
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
+	public function getTitle(): ?string
+	{
+		return $this->title;
+	}
 
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
+	public function setTitle(string $title): self
+	{
+		$this->title = $title;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
+	/**
+	 * @return Collection|User[]
+	 */
+	public function getUsers(): Collection
+	{
+		return $this->users;
+	}
 
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-        }
+	public function addUser(User $user): self
+	{
+		if (!$this->users->contains($user)) {
+			$this->users[] = $user;
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-        }
+	public function removeUser(User $user): self
+	{
+		if ($this->users->contains($user)) {
+			$this->users->removeElement($user);
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 }

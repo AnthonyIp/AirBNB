@@ -5,7 +5,7 @@ security:
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+#        users_in_memory: { memory: null }
         in_database:
             entity:
                 class: App\Entity\User
@@ -23,7 +23,7 @@ security:
 
             form_login:
                 login_path: admin_account_login
-                check_path: account_login
+                check_path: admin_account_login
                 default_target_path: admin_ads_index
             logout:
                 path: admin_account_logout

@@ -10,22 +10,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminDashboardController extends AbstractController
 {
-    /**
-     * @Route("/admin", name="admin_dashboard")
-     * @param StatsService $statsService
-     * @param EntityManagerInterface $manager
-     * @return Response
-     */
-    public function index(StatsService $statsService, EntityManagerInterface $manager): Response
-    {
-        $stats = $statsService->getStats();
-        $bestAds = $statsService->getAdsStats('DESC');
-        $worstAds = $statsService->getAdsStats('ASC');
+	/**
+	 * @Route("/admin", name="admin_dashboard")
+	 * @param StatsService           $statsService
+	 * @param EntityManagerInterface $manager
+	 * @return Response
+	 */
+	public function index(StatsService $statsService, EntityManagerInterface $manager): Response
+	{
+		$stats    = $statsService->getStats();
+		$bestAds  = $statsService->getAdsStats('DESC');
+		$worstAds = $statsService->getAdsStats('ASC');
 
-        return $this->render('admin/dashboard/index.html.twig', [
-            'stats' => $stats,
-            'bestAds' => $bestAds,
-            'worstAds' => $worstAds
-        ]);
-    }
+		return $this->render('admin/dashboard/index.html.twig', [
+			'stats'    => $stats,
+			'bestAds'  => $bestAds,
+			'worstAds' => $worstAds,
+		]);
+	}
 }

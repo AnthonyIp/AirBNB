@@ -6,53 +6,53 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class PasswordUpdate
 {
-    private $oldPassword;
+	private $oldPassword;
 
-    /**
-     * @Assert\NotBlank
-     * @Assert\NotCompromisedPassword
-     * @Assert\Length(min=8, minMessage="Votre nouveau mot de passe doit contenir au moins 8 caractères.")
-     */
-    private $newPassword;
+	/**
+	 * @Assert\NotBlank
+	 * @Assert\NotCompromisedPassword
+	 * @Assert\Length(min=8, minMessage="Votre nouveau mot de passe doit contenir au moins 8 caractères.")
+	 */
+	private $newPassword;
 
-    /**
-     * @Assert\EqualTo(propertyPath="newPassword", message="Vous n'avez pas correctement confirmé votre nouveau mot de passe.")
-     */
-    private $confirmPassword;
+	/**
+	 * @Assert\EqualTo(propertyPath="newPassword", message="Vous n'avez pas correctement confirmé votre nouveau mot de passe.")
+	 */
+	private $confirmPassword;
 
-    public function getOldPassword(): ?string
-    {
-        return $this->oldPassword;
-    }
+	public function getOldPassword(): ?string
+	{
+		return $this->oldPassword;
+	}
 
-    public function setOldPassword(string $oldPassword): self
-    {
-        $this->oldPassword = $oldPassword;
+	public function setOldPassword(string $oldPassword): self
+	{
+		$this->oldPassword = $oldPassword;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function getNewPassword(): ?string
-    {
-        return $this->newPassword;
-    }
+	public function getNewPassword(): ?string
+	{
+		return $this->newPassword;
+	}
 
-    public function setNewPassword(string $newPassword): self
-    {
-        $this->newPassword = $newPassword;
+	public function setNewPassword(string $newPassword): self
+	{
+		$this->newPassword = $newPassword;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function getConfirmPassword(): ?string
-    {
-        return $this->confirmPassword;
-    }
+	public function getConfirmPassword(): ?string
+	{
+		return $this->confirmPassword;
+	}
 
-    public function setConfirmPassword(string $confirmPassword): self
-    {
-        $this->confirmPassword = $confirmPassword;
+	public function setConfirmPassword(string $confirmPassword): self
+	{
+		$this->confirmPassword = $confirmPassword;
 
-        return $this;
-    }
+		return $this;
+	}
 }
